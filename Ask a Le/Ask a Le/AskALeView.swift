@@ -23,7 +23,7 @@ enum ResponseStyle: String, CaseIterable, Identifiable {
     case concise = "Concise"
     case detailed = "Detailed"
     case neutral = "Neutral"
-
+    
     var id: String { self.rawValue }
 }
 
@@ -41,17 +41,17 @@ struct SettingsScreenView: View {
     // Theme selection is usually handled at the app level or via Environment, placeholder here
     @AppStorage("settings_preferredColorScheme") private var preferredColorScheme: String = "system" // "system", "light", "dark"
     // Text Size is typically controlled by Dynamic Type - show info text
-
+    
     // --- Voice & Language Settings ---
     @AppStorage("settings_inputLanguage") private var inputLanguage: String = Locale.current.identifier // Default to device locale
     @AppStorage("settings_outputVoiceIdentifier") private var outputVoiceIdentifier: String = AVSpeechSynthesisVoice.speechVoices().first(where: { $0.language == AVSpeechSynthesisVoice.currentLanguageCode() })?.identifier ?? ""
     @AppStorage("settings_speechSpeed") private var speechSpeed: Double = 0.5 // Range 0.0 to 1.0 (AVSpeechUtterance rate is 0.0-1.0, default 0.5)
     @AppStorage("settings_responseStyle") private var responseStyle: ResponseStyle = .neutral
-
+    
     // --- Conversation History Settings ---
     @AppStorage("settings_enableHistory") private var enableHistory: Bool = true
     @State private var showingClearHistoryAlert = false
-
+    
     // --- Permissions (Passed from Parent) ---
     // These bindings allow this view to *display* the status determined by the parent view
     @Binding var micPermissionStatus: AVAudioApplication.recordPermission
@@ -59,15 +59,15 @@ struct SettingsScreenView: View {
     // Add bindings for Camera/Location if implementing those features
     // @Binding var cameraPermissionStatus: AVAuthorizationStatus // Example
     // @Binding var locationPermissionStatus: CLAuthorizationStatus // Example
-
+    
     // --- Mock Data ---
     let availableVoices: [VoiceOption] = AVSpeechSynthesisVoice.speechVoices()
         .filter { $0.language.starts(with: "en-") } // Example: Filter English voices
         .map { VoiceOption(name: "\($0.name) (\($0.language))", identifier: $0.identifier) }
         .sorted { $0.name < $1.name } // Sort voices alphabetically
-
+    
     let availableLocales: [Locale] = Locale.availableIdentifiers.map { Locale(identifier: $0) }.sorted { $0.localizedString(forIdentifier: $0.identifier) ?? "" < $1.localizedString(forIdentifier: $1.identifier) ?? "" }
-
+    
     var body: some View {
         // Use a Form for standard iOS settings appearance
         Form {
@@ -76,7 +76,7 @@ struct SettingsScreenView: View {
                 Text("Manage your profile (Placeholder)")
                     .foregroundColor(.gray)
             }
-
+            
             // Section: Appearance
             Section("Appearance") {
                 // Theme Picker (Simplified using AppStorage string)
@@ -85,43 +85,41 @@ struct SettingsScreenView: View {
                     Text("Light").tag("light")
                     Text("Dark").tag("dark")
                 }
-                .onChange(of: preferredColorScheme) { newValue in
-                     // Apply the theme change globally if needed
-                    print("Theme preference changed to: \(newValue)")
+                .onChange(of: preferredColorScheme) {
+                    print("Theme preference changed to: \(preferredColorScheme)")
                     // In a real app, this might update an @EnvironmentObject or similar
                 }
-
                 // Info about Dynamic Type
                 Text("Text size respects the system Dynamic Type setting.")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
-
+            
             // Section: Voice & Language
             Section("Voice & Language") {
                 // Input Language Picker (Simplified)
                 // A real implementation might need more robust locale handling
-                 Picker("Input Language", selection: $inputLanguage) {
-                     ForEach(availableLocales.prefix(20), id: \.identifier) { locale in // Limit for preview performance
-                         Text(locale.localizedString(forIdentifier: locale.identifier) ?? locale.identifier).tag(locale.identifier)
-                     }
-                 }
-                 .pickerStyle(.navigationLink) // Use navigation link for many options
-
+                Picker("Input Language", selection: $inputLanguage) {
+                    ForEach(availableLocales.prefix(20), id: \.identifier) { locale in // Limit for preview performance
+                        Text(locale.localizedString(forIdentifier: locale.identifier) ?? locale.identifier).tag(locale.identifier)
+                    }
+                }
+                .pickerStyle(.navigationLink) // Use navigation link for many options
+                
                 // Output Voice Picker
                 Picker("Output Voice", selection: $outputVoiceIdentifier) {
                     ForEach(availableVoices) { voice in
                         Text(voice.name).tag(voice.identifier)
                     }
                 }
-                 .pickerStyle(.navigationLink)
-
+                .pickerStyle(.navigationLink)
+                
                 // Speech Speed Slider
                 VStack(alignment: .leading) {
                     Text("Speech Speed: \(speechSpeed, specifier: "%.2f")")
                     Slider(value: $speechSpeed, in: 0.0...1.0, step: 0.1) // AVSpeechUtterance rate range
                 }
-
+                
                 // Response Style Picker
                 Picker("Response Style", selection: $responseStyle) {
                     ForEach(ResponseStyle.allCases) { style in
@@ -130,7 +128,7 @@ struct SettingsScreenView: View {
                 }
                 .pickerStyle(.segmented) // Or .menu
             }
-
+            
             // Section: Permissions Management
             Section("Permissions") {
                 permissionRow(title: "Microphone", status: micPermissionStatus.description, systemStatus: micPermissionStatus != .denied)
@@ -139,11 +137,11 @@ struct SettingsScreenView: View {
                 // permissionRow(title: "Camera", status: cameraPermissionStatus.description, systemStatus: cameraPermissionStatus != .denied)
                 // permissionRow(title: "Location", status: locationPermissionStatus.description, systemStatus: locationPermissionStatus != .denied)
             }
-
+            
             // Section: Conversation History
             Section("Conversation History") {
                 Toggle("Save History", isOn: $enableHistory)
-
+                
                 Button("Clear All Conversation History", role: .destructive) {
                     showingClearHistoryAlert = true
                 }
@@ -160,7 +158,7 @@ struct SettingsScreenView: View {
             } message: {
                 Text("This action cannot be undone.")
             }
-
+            
             // Section: Feedback & About
             Section("Feedback & About") {
                 Button("Send Feedback") {
@@ -171,15 +169,15 @@ struct SettingsScreenView: View {
                 NavigationLink("About") {
                     AboutView() // Navigate to a simple About view
                 }
-                 NavigationLink("Help / FAQ") {
-                     Text("Help / FAQ Content Goes Here") // Placeholder
-                 }
+                NavigationLink("Help / FAQ") {
+                    Text("Help / FAQ Content Goes Here") // Placeholder
+                }
             }
         }
         .navigationTitle("AI Mode Settings") // Set the title for the navigation bar
         .navigationBarTitleDisplayMode(.inline) // Use inline style for settings
     }
-
+    
     // Helper ViewBuilder for consistent permission rows
     @ViewBuilder
     private func permissionRow(title: String, status: String, systemStatus: Bool) -> some View {
@@ -196,7 +194,7 @@ struct SettingsScreenView: View {
             .buttonStyle(.bordered) // Make it look more like a button
         }
     }
-
+    
     // Helper function to open app settings
     private func openAppSettings() {
         print("[Settings Action] User tapped 'Settings' for a permission")
@@ -245,21 +243,21 @@ struct AskALeAIModeIntroView: View {
         didSet { print("[State Change] showSpeechDeniedAlert updated to: \(showSpeechDeniedAlert)") }
     }
     @State private var interactionMessage: String? = nil
-
+    
     // --- Permission State ---
     @State private var micPermissionStatus: AVAudioApplication.recordPermission = .undetermined {
-         didSet { print("[State Change] micPermissionStatus updated to: \(micPermissionStatus.description)") }
-     }
+        didSet { print("[State Change] micPermissionStatus updated to: \(micPermissionStatus.description)") }
+    }
     @State private var speechPermissionStatus: SFSpeechRecognizerAuthorizationStatus = .notDetermined {
         didSet { print("[State Change] speechPermissionStatus updated to: \(speechPermissionStatus.description)") }
     }
-
+    
     // --- Speech Recognition Objects ---
     @State private var speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US")) // Consider using @AppStorage locale
     @State private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     @State private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-
+    
     // --- UI Constants ---
     let rainbowGradient = AngularGradient(
         gradient: Gradient(colors: [
@@ -271,36 +269,36 @@ struct AskALeAIModeIntroView: View {
     let darkGrayBackground = Color(white: 0.1)
     let darkerGrayElement = Color(white: 0.15)
     let veryDarkBackground = Color(white: 0.05)
-
+    
     // MARK: - Body
     var body: some View {
         // Use NavigationView to enable NavigationLink to Settings
         NavigationView {
             ZStack {
                 darkGrayBackground.ignoresSafeArea()
-
+                
                 VStack(spacing: 30) {
                     searchBarArea()
                         .padding(.top, 20) // Reduced padding as Nav Bar takes space
-
+                    
                     introductoryContent()
-
+                    
                     Spacer()
                 }
                 // Add Settings Navigation Item to the Navigation Bar
                 .navigationBarItems(trailing:
-                    NavigationLink(destination: settingsView()) { // Navigate to SettingsScreenView
-                        Image(systemName: "gearshape.fill")
-                            .font(.title2)
-                             .foregroundColor(.white) // Set icon color
-                    }
+                                        NavigationLink(destination: settingsView()) { // Navigate to SettingsScreenView
+                    Image(systemName: "gearshape.fill")
+                        .font(.title2)
+                        .foregroundColor(.white) // Set icon color
+                }
                 )
                 .navigationBarTitleDisplayMode(.inline) // Keep title small or hidden if preferred
-                 .toolbar { // Hide the default Nav Bar title text if needed
-                     ToolbarItem(placement: .principal) {
-                         Text("").accessibilityHidden(true) // Empty text for principal makes Nav bar visually cleaner
-                     }
-                 }
+                .toolbar { // Hide the default Nav Bar title text if needed
+                    ToolbarItem(placement: .principal) {
+                        Text("").accessibilityHidden(true) // Empty text for principal makes Nav bar visually cleaner
+                    }
+                }
             }
             .preferredColorScheme(.dark) // Keep dark mode preference
             .onAppear {
@@ -311,55 +309,55 @@ struct AskALeAIModeIntroView: View {
             .alert("Microphone Access Denied", isPresented: $showMicDeniedAlert) {
                 alertButtons()
             } message: { Text("To use voice input, please enable microphone access for this app in Settings.") }
-            .alert("Speech Recognition Access Denied", isPresented: $showSpeechDeniedAlert) {
-                alertButtons()
-            } message: { Text("To transcribe voice, please enable Speech Recognition access for this app in Settings.") }
+                .alert("Speech Recognition Access Denied", isPresented: $showSpeechDeniedAlert) {
+                    alertButtons()
+                } message: { Text("To transcribe voice, please enable Speech Recognition access for this app in Settings.") }
         }
         .accentColor(.white) // Set the accent color for Navigation Bar items (like back button)
     }
-
+    
     // MARK: - ViewBuilders (Existing and New)
-
+    
     // Helper to create SettingsScreenView with necessary bindings
-     @ViewBuilder
-     private func settingsView() -> some View {
-         SettingsScreenView(
-             micPermissionStatus: $micPermissionStatus,
-             speechPermissionStatus: $speechPermissionStatus
-             // Pass other bindings here if needed for Camera/Location
-         )
-     }
-
-
+    @ViewBuilder
+    private func settingsView() -> some View {
+        SettingsScreenView(
+            micPermissionStatus: $micPermissionStatus,
+            speechPermissionStatus: $speechPermissionStatus
+            // Pass other bindings here if needed for Camera/Location
+        )
+    }
+    
+    
     // Search Bar Area (mostly unchanged, ensure layout works with Nav Bar)
     @ViewBuilder
     private func searchBarArea() -> some View {
         let isMicDisabled = micPermissionStatus == .denied
         let isSpeechDisabled = speechPermissionStatus == .denied || speechPermissionStatus == .restricted
         let isFullyDisabled = isMicDisabled || isSpeechDisabled
-
+        
         ZStack {
             veryDarkBackground
                 .cornerRadius(20)
                 .padding(.horizontal, 20)
                 .shadow(color: .black.opacity(0.4), radius: 10, x: 0, y: 5)
-
+            
             Capsule()
                 .strokeBorder(rainbowGradient, lineWidth: 4)
                 .blur(radius: 8)
                 .opacity(0.8)
                 .frame(height: 55)
                 .padding(.horizontal, 40)
-
+            
             HStack {
                 TextField("Ask anything...", text: $searchText)
                     .foregroundColor(.white)
                     .tint(.white)
                     .padding(.leading, 20)
                     .disabled(isListening || isFullyDisabled)
-
+                
                 Spacer()
-
+                
                 Button {
                     print("[UI Action] Microphone button tapped.")
                     handleMicTap()
@@ -374,7 +372,7 @@ struct AskALeAIModeIntroView: View {
                 }
                 .disabled(isFullyDisabled || (isListening && recognitionTask != nil))
                 .padding(.trailing, 5)
-
+                
                 Image(systemName: "camera.viewfinder")
                     .foregroundColor(isFullyDisabled ? .gray : .white)
                     .padding(.trailing, 20)
@@ -414,7 +412,7 @@ struct AskALeAIModeIntroView: View {
         
         .onAppear { updateInteractionMessage() }
     }
-
+    
     @ViewBuilder
     private func introductoryContent() -> some View {
         VStack(alignment: .leading, spacing: 20) {
@@ -430,11 +428,11 @@ struct AskALeAIModeIntroView: View {
                 }
                 Spacer()
             }
-
+            
             Text("Be the first to try the new AI Mode experiment in Google Search. Get AI-powered responses and explore further with follow-up questions and links to helpful web content.")
                 .font(.subheadline)
                 .foregroundColor(.gray)
-
+            
             HStack {
                 Text("Turn this experiment on or off.")
                     .font(.subheadline)
@@ -449,7 +447,7 @@ struct AskALeAIModeIntroView: View {
             .padding()
             .background(darkerGrayElement)
             .cornerRadius(15)
-
+            
             Button {
                 print("[UI Action] 'Try AI Mode' button tapped.")
             } label: {
@@ -466,7 +464,7 @@ struct AskALeAIModeIntroView: View {
         }
         .padding(.horizontal, 25)
     }
-
+    
     @ViewBuilder
     private func aiIcon() -> some View {
         ZStack {
@@ -482,7 +480,7 @@ struct AskALeAIModeIntroView: View {
                 .foregroundColor(.white)
         }
     }
-
+    
     @ViewBuilder
     private func alertButtons() -> some View {
         Button("Open Settings") {
@@ -499,9 +497,9 @@ struct AskALeAIModeIntroView: View {
             print("[Alert Action] User tapped 'Cancel' on permission alert")
         }
     }
-
+    
     // MARK: - Helper Functions (Unchanged)
-
+    
     private func messageColor() -> Color {
         if micPermissionStatus == .denied || speechPermissionStatus == .denied || speechPermissionStatus == .restricted {
             return .red.opacity(0.8)
@@ -511,7 +509,7 @@ struct AskALeAIModeIntroView: View {
             return .clear
         }
     }
-
+    
     private func updateInteractionMessage() {
         if micPermissionStatus == .denied {
             interactionMessage = "Mic Access Denied"
@@ -524,14 +522,14 @@ struct AskALeAIModeIntroView: View {
         }
         print("[UI Update] Interaction message set to: \(interactionMessage ?? "nil")")
     }
-
-
+    
+    
     // MARK: - Action & Permission Handling (Unchanged)
-
+    
     private func handleMicTap() {
         print("[Function Call] handleMicTap() called.")
         print("  -> Current State: isListening=\(isListening), Mic=\(micPermissionStatus.description), Speech=\(speechPermissionStatus.description)")
-
+        
         if isListening {
             print("  -> Currently listening. Calling stopListening().")
             stopListening()
@@ -546,13 +544,13 @@ struct AskALeAIModeIntroView: View {
             case .denied:
                 print("  -> Mic Denied. Setting showMicDeniedAlert = true.")
                 showMicDeniedAlert = true
-             @unknown default:
+            @unknown default:
                 print("  -> Mic status unknown or future case. Treating as undetermined.")
                 requestMicPermission()
             }
         }
     }
-
+    
     private func checkAndHandleSpeechPermission() {
         print("[Function Call] checkAndHandleSpeechPermission() called.")
         switch speechPermissionStatus {
@@ -570,22 +568,22 @@ struct AskALeAIModeIntroView: View {
             showSpeechDeniedAlert = true
         }
     }
-
+    
     private func checkInitialPermissions() {
         print("[Function Call] checkInitialPermissions() called.")
         let currentMicPermission = AVAudioApplication.shared.recordPermission
         print("  -> Current AVAudioApplication.recordPermission: \(currentMicPermission.description)")
         self.micPermissionStatus = currentMicPermission
-
+        
         let currentSpeechPermission = SFSpeechRecognizer.authorizationStatus()
         print("  -> Current SFSpeechRecognizer.authorizationStatus: \(currentSpeechPermission.description)")
         self.speechPermissionStatus = currentSpeechPermission
-
+        
         DispatchQueue.main.async {
             self.updateInteractionMessage()
         }
     }
-
+    
     private func requestMicPermission() {
         print("[Function Call] requestMicPermission() called.")
         AVAudioApplication.requestRecordPermission { granted in
@@ -604,7 +602,7 @@ struct AskALeAIModeIntroView: View {
             }
         }
     }
-
+    
     private func requestSpeechPermission() {
         print("[Function Call] requestSpeechPermission() called.")
         SFSpeechRecognizer.requestAuthorization { authStatus in
@@ -613,9 +611,9 @@ struct AskALeAIModeIntroView: View {
                 print("  -> Updating speech state on main thread.")
                 self.speechPermissionStatus = authStatus
                 if authStatus == .authorized {
-                     print("    -> Speech permission GRANTED. User can now tap mic to start.")
-                     // Consider if auto-start is desired:
-                     // self.startListening()
+                    print("    -> Speech permission GRANTED. User can now tap mic to start.")
+                    // Consider if auto-start is desired:
+                    // self.startListening()
                 } else {
                     print("    -> Speech permission DENIED/Restricted. Setting showSpeechDeniedAlert = true.")
                     self.showSpeechDeniedAlert = true
@@ -624,10 +622,10 @@ struct AskALeAIModeIntroView: View {
             }
         }
     }
-
-
+    
+    
     // MARK: - Real-time Listening Logic (Unchanged)
-
+    
     private func startListening() {
         print("[Function Call] startListening() called.")
         guard !isListening else {
@@ -645,7 +643,7 @@ struct AskALeAIModeIntroView: View {
             return
         }
         print("  -> Pre-checks passed. Proceeding to start listening.")
-
+        
         searchText = ""
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = recognitionRequest else {
@@ -655,7 +653,7 @@ struct AskALeAIModeIntroView: View {
         }
         recognitionRequest.shouldReportPartialResults = true
         print("  -> Recognition request created (partial results enabled).")
-
+        
         let audioSession = AVAudioSession.sharedInstance()
         do {
             print("  -> Configuring Audio Session Category: Record, Mode: Measurement.")
@@ -668,7 +666,7 @@ struct AskALeAIModeIntroView: View {
             DispatchQueue.main.async { self.interactionMessage = "Audio session error" }
             return
         }
-
+        
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         guard recordingFormat.sampleRate > 0 && recordingFormat.channelCount > 0 else {
@@ -678,13 +676,13 @@ struct AskALeAIModeIntroView: View {
             return
         }
         print("  -> Got Audio Engine Input Node. Format: \(recordingFormat)")
-
+        
         print("  -> Starting SFSpeechRecognitionTask.")
         recognitionTask = recognizer.recognitionTask(with: recognitionRequest) { result, error in // Use weak self
             
-
+            
             var isFinal = false
-
+            
             if let result = result {
                 let recognizedText = result.bestTranscription.formattedString
                 print("[Recognition Result] Partial/Final: '\(recognizedText)' (isFinal: \(result.isFinal))")
@@ -693,22 +691,22 @@ struct AskALeAIModeIntroView: View {
                 }
                 isFinal = result.isFinal
             }
-
+            
             if error != nil || isFinal {
                 print("  -> Recognition task ending. Error: \(error?.localizedDescription ?? "None"), isFinal: \(isFinal)")
-                 DispatchQueue.main.async {
-                     print("    -> Stopping listening from recognition task callback.")
-                     self.stopListening()
-                 }
+                DispatchQueue.main.async {
+                    print("    -> Stopping listening from recognition task callback.")
+                    self.stopListening()
+                }
             }
         }
-
+        
         print("  -> Installing tap on input node bus 0.")
-         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {(buffer: AVAudioPCMBuffer, when: AVAudioTime) in
-              // Use weak self in tap block too
-             self.recognitionRequest?.append(buffer)
-         }
-
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {(buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+            // Use weak self in tap block too
+            self.recognitionRequest?.append(buffer)
+        }
+        
         do {
             print("  -> Preparing Audio Engine.")
             audioEngine.prepare()
@@ -716,16 +714,16 @@ struct AskALeAIModeIntroView: View {
             try audioEngine.start()
             print("  -> Audio Engine started successfully.")
             DispatchQueue.main.async {
-                 self.isListening = true
-                 self.updateInteractionMessage()
-             }
+                self.isListening = true
+                self.updateInteractionMessage()
+            }
         } catch {
             print("  -> ERROR starting audio engine: \(error.localizedDescription)")
             cleanupListeningResources()
             DispatchQueue.main.async { self.interactionMessage = "Audio engine error" }
         }
     }
-
+    
     private func stopListening() {
         print("[Function Call] stopListening() called.")
         if audioEngine.isRunning {
@@ -736,18 +734,18 @@ struct AskALeAIModeIntroView: View {
             audioEngine.inputNode.removeTap(onBus: 0)
             print("  -> Removed tap from input node.")
         } else {
-             print("  -> Audio engine was not running. Skipping stop/removeTap.")
+            print("  -> Audio engine was not running. Skipping stop/removeTap.")
         }
-
+        
         if recognitionRequest != nil {
             recognitionRequest?.endAudio()
             print("  -> Called endAudio() on recognition request.")
         } else {
-             print("  -> No recognition request to end audio for.")
+            print("  -> No recognition request to end audio for.")
         }
         cleanupListeningResources()
     }
-
+    
     private func cleanupListeningResources() {
         print("[Function Call] cleanupListeningResources() called.")
         if let task = recognitionTask, task.state == .running || task.state == .starting || task.state == .finishing || task.state == .canceling {
@@ -757,30 +755,30 @@ struct AskALeAIModeIntroView: View {
             print("  -> No active recognition task to cancel (State: \(recognitionTask?.state.description ?? "nil")).")
         }
         recognitionTask = nil
-
+        
         if recognitionRequest != nil {
             recognitionRequest = nil
             print("  -> Released recognition request.")
         }
-
+        
         do {
-             if AVAudioSession.sharedInstance().category == .record || AVAudioSession.sharedInstance().category == .playAndRecord {
-                 try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-                 print("  -> Deactivated audio session.")
-             } else {
+            if AVAudioSession.sharedInstance().category == .record || AVAudioSession.sharedInstance().category == .playAndRecord {
+                try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+                print("  -> Deactivated audio session.")
+            } else {
                 print("  -> Audio session already inactive or in a different state (\(AVAudioSession.sharedInstance().category)).")
-             }
+            }
         } catch {
             print("  -> ERROR deactivating audio session: \(error.localizedDescription)")
         }
-
+        
         DispatchQueue.main.async {
             if self.isListening {
                 self.isListening = false
                 print("  -> Set isListening state to false.")
                 self.updateInteractionMessage()
             } else {
-                 print("  -> isListening was already false. No state change needed.")
+                print("  -> isListening was already false. No state change needed.")
             }
         }
         print("  -> Cleanup finished.")
@@ -833,7 +831,7 @@ struct AskALeAIModeIntroView_Previews: PreviewProvider {
             .onAppear {
                 print("[Preview] AskALeAIModeIntroView preview appearing.")
                 // Set default @AppStorage values for preview if needed
-                 UserDefaults.standard.set(ResponseStyle.neutral.rawValue, forKey: "settings_responseStyle")
+                UserDefaults.standard.set(ResponseStyle.neutral.rawValue, forKey: "settings_responseStyle")
             }
             .preferredColorScheme(.dark)
             .previewDisplayName("Ask a Le AI Mode Intro View Preview")
@@ -842,17 +840,17 @@ struct AskALeAIModeIntroView_Previews: PreviewProvider {
 
 // Preview for Settings Screen
 struct SettingsScreenView_Previews: PreviewProvider {
-     // Create static states for preview bindings
-     @State static var previewMicPermission: AVAudioApplication.recordPermission = .granted
-     @State static var previewSpeechPermission: SFSpeechRecognizerAuthorizationStatus = .authorized
-
-     static var previews: some View {
-         NavigationView { // Add NavigationView for preview context
-             SettingsScreenView(
-                 micPermissionStatus: $previewMicPermission,
-                 speechPermissionStatus: $previewSpeechPermission
-             )
-         }
-          .preferredColorScheme(.dark) // Preview in dark mode
-     }
+    // Create static states for preview bindings
+    @State static var previewMicPermission: AVAudioApplication.recordPermission = .granted
+    @State static var previewSpeechPermission: SFSpeechRecognizerAuthorizationStatus = .authorized
+    
+    static var previews: some View {
+        NavigationView { // Add NavigationView for preview context
+            SettingsScreenView(
+                micPermissionStatus: $previewMicPermission,
+                speechPermissionStatus: $previewSpeechPermission
+            )
+        }
+        .preferredColorScheme(.dark) // Preview in dark mode
+    }
 }

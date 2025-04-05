@@ -14,7 +14,7 @@ enum FeedbackType: String, CaseIterable, Identifiable {
     case featureRequest = "Feature Request"
     case generalFeedback = "General Feedback"
     case compliment = "Compliment"
-
+    
     var id: String { self.rawValue }
 }
 
@@ -27,30 +27,30 @@ struct FeedbackView: View {
     @State private var userEmail: String = "" // Optional email
     @State private var showingConfirmationAlert = false
     @State private var submissionAttempted = false // Track if submission was tried
-
+    
     // --- Environment ---
     @Environment(\.dismiss) private var dismiss // To dismiss the modal view
-
+    
     // --- Constants ---
     private let feedbackPlaceholder = "Please provide detailed feedback here..."
     private let emailPlaceholder = "Your email (optional, for follow-up)"
     private let characterLimit = 2000 // Example character limit
-
+    
     // --- Computed Properties ---
     private var isFeedbackMessageValid: Bool {
         !feedbackMessage.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         feedbackMessage != feedbackPlaceholder // Ensure it's not just the placeholder
     }
-
+    
     private var isFormValid: Bool {
         isFeedbackMessageValid
         // Add email validation if required, e.g., simple format check
     }
-
+    
     private var remainingCharacters: Int {
         characterLimit - feedbackMessage.count
     }
-
+    
     var body: some View {
         NavigationView { // Wrap in NavigationView for title and toolbar items
             Form {
@@ -63,7 +63,7 @@ struct FeedbackView: View {
                     }
                     // Consider .pickerStyle(.inline) or .menu if preferred
                 }
-
+                
                 // Section: Feedback Message
                 Section("Your Feedback (Required)") {
                     ZStack(alignment: .topLeading) {
@@ -75,37 +75,36 @@ struct FeedbackView: View {
                                 .padding(.leading, 5)
                                 .allowsHitTesting(false) // Let taps pass through to TextEditor
                         }
-
+                        
                         // Actual TextEditor
                         TextEditor(text: $feedbackMessage)
                             .frame(minHeight: 150, maxHeight: 300) // Set reasonable height limits
-                            .onChange(of: feedbackMessage) { newValue in
-                                // Enforce character limit
-                                if newValue.count > characterLimit {
-                                    feedbackMessage = String(newValue.prefix(characterLimit))
+                            .onChange(of: feedbackMessage) {
+                                if feedbackMessage.count > characterLimit {
+                                    feedbackMessage = String(feedbackMessage.prefix(characterLimit))
                                 }
                             }
                             .border(submissionAttempted && !isFeedbackMessageValid ? Color.red : Color.clear, width: 1) // Show red border if invalid after trying to submit
                     }
-
+                    
                     // Character Count Indicator
                     HStack {
-                         Spacer() // Pushes the text to the right
-                         Text("\(remainingCharacters)/\(characterLimit)")
+                        Spacer() // Pushes the text to the right
+                        Text("\(remainingCharacters)/\(characterLimit)")
                             .font(.caption)
                             .foregroundColor(remainingCharacters < 50 ? .orange : .gray) // Change color when near limit
                     }
                 }
-
-                 // Section: Contact Information (Optional)
+                
+                // Section: Contact Information (Optional)
                 Section("Contact (Optional)") {
-                     TextField(emailPlaceholder, text: $userEmail)
-                         .keyboardType(.emailAddress)
-                         .textContentType(.emailAddress)
-                         .autocapitalization(.none)
-                         .disableAutocorrection(true)
-                 }
-
+                    TextField(emailPlaceholder, text: $userEmail)
+                        .keyboardType(.emailAddress)
+                        .textContentType(.emailAddress)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                }
+                
                 // Section: Submit Button
                 Section {
                     Button(action: submitFeedback) {
@@ -119,7 +118,7 @@ struct FeedbackView: View {
                     .disabled(!isFormValid) // Disable button if form is not valid
                     .foregroundColor(isFormValid ? .accentColor : .gray) // Adjust text color based on validity
                 }
-
+                
             }
             .navigationTitle("Send Feedback")
             .navigationBarTitleDisplayMode(.inline)
@@ -143,24 +142,24 @@ struct FeedbackView: View {
             }
         }
         // Apply theme if necessary (e.g., for dark mode consistency)
-         .preferredColorScheme(.dark) // Match the rest of the app
-         .accentColor(Color(red: 0.6, green: 0.8, blue: 1.0)) // Match button blue
+        .preferredColorScheme(.dark) // Match the rest of the app
+        .accentColor(Color(red: 0.6, green: 0.8, blue: 1.0)) // Match button blue
     }
-
+    
     // --- Action Methods ---
     private func submitFeedback() {
         submissionAttempted = true // Mark that submission was attempted
         guard isFormValid else {
-             print("[Feedback Validation] Form is invalid. Submission halted.")
-             // Optionally shake the view or provide more specific feedback
-             return
-         }
-
+            print("[Feedback Validation] Form is invalid. Submission halted.")
+            // Optionally shake the view or provide more specific feedback
+            return
+        }
+        
         print("[Feedback Action] Submit button tapped.")
         print("  -> Type: \(feedbackType.rawValue)")
         print("  -> Message: \(feedbackMessage)")
         print("  -> Email: \(userEmail.isEmpty ? "Not Provided" : userEmail)")
-
+        
         // --- Simulate Network Request ---
         // In a real app, you would send this data to your backend API:
         // Task {
@@ -176,7 +175,7 @@ struct FeedbackView: View {
         //     }
         // }
         // --- End Simulation ---
-
+        
         // For this example, just show the confirmation directly
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // Simulate slight delay
             showingConfirmationAlert = true
@@ -193,13 +192,13 @@ struct FeedbackView: View {
 // Modify the "Send Feedback" button action in SettingsScreenView:
 /*
  Button("Send Feedback") {
-     print("[Settings Action] Opening feedback form.")
-     showingFeedbackSheet = true // Set the state to true
+ print("[Settings Action] Opening feedback form.")
+ showingFeedbackSheet = true // Set the state to true
  }
  .sheet(isPresented: $showingFeedbackSheet) { // Add this sheet modifier
-     FeedbackView() // Present the FeedbackView modally
+ FeedbackView() // Present the FeedbackView modally
  }
-*/
+ */
 
 // MARK: - Preview Provider
 
