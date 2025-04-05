@@ -11,7 +11,7 @@ import SwiftUI
 struct Ask_a_LeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AskALeAIModeIntroView()
         }
     }
 }

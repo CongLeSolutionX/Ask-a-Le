@@ -5,13 +5,6 @@
 //  Created by Cong Le on 4/5/25.
 //
 
-//
-//  SettingView.swift
-//  MyApp
-//
-//  Created by Cong Le on 4/4/25.
-//
-
 import SwiftUI
 import AVFoundation
 import Speech // Make sure Speech framework is imported

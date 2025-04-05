@@ -399,6 +399,8 @@
 				DEVELOPMENT_TEAM = 99WD9D6Y46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ask a Le app needs access to your microphone to enable voice search.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ask a Le app uses speech recognition to transcribe your voice input for the AI Mode.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +430,8 @@
 				DEVELOPMENT_TEAM = 99WD9D6Y46;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ask a Le app needs access to your microphone to enable voice search.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Ask a Le app uses speech recognition to transcribe your voice input for the AI Mode.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
