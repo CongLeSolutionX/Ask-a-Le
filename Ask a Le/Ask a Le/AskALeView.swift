@@ -402,9 +402,16 @@ struct AskALeAIModeIntroView: View {
             )
         }
         .frame(height: 100)
-        .onChange(of: isListening) { newValue in updateInteractionMessage() }
-        .onChange(of: micPermissionStatus) { newValue in updateInteractionMessage() }
-        .onChange(of: speechPermissionStatus) { newValue in updateInteractionMessage() }
+        .onChange(of: isListening) {
+            updateInteractionMessage()
+        }
+        .onChange(of: micPermissionStatus) {
+            updateInteractionMessage()
+        }
+        .onChange(of: speechPermissionStatus) {
+            updateInteractionMessage()
+        }
+        
         .onAppear { updateInteractionMessage() }
     }
 
@@ -435,8 +442,8 @@ struct AskALeAIModeIntroView: View {
                 Toggle("", isOn: $isExperimentOn.animation())
                     .labelsHidden()
                     .tint(buttonBlue)
-                    .onChange(of: isExperimentOn) { newValue in
-                        print("[State Change] isExperimentOn toggled to: \(newValue)")
+                    .onChange(of: isExperimentOn) {
+                        print("[State Change] isExperimentOn toggled to: \(isExperimentOn)")
                     }
             }
             .padding()
@@ -782,7 +789,7 @@ struct AskALeAIModeIntroView: View {
 
 // MARK: - Helper Extensions (Unchanged)
 
-extension SFSpeechRecognizerAuthorizationStatus: CustomStringConvertible {
+extension SFSpeechRecognizerAuthorizationStatus: @retroactive CustomStringConvertible {
     public var description: String {
         switch self {
         case .notDetermined: return "Not Determined"
@@ -820,7 +827,7 @@ extension AVAudioApplication.recordPermission: @retroactive CustomStringConverti
 
 
 // MARK: - Preview Provider (Updated to include NavigationView)
-struct GoogleAIModeIntroView_Previews: PreviewProvider {
+struct AskALeAIModeIntroView_Previews: PreviewProvider {
     static var previews: some View {
         AskALeAIModeIntroView()
             .onAppear {
@@ -829,6 +836,7 @@ struct GoogleAIModeIntroView_Previews: PreviewProvider {
                  UserDefaults.standard.set(ResponseStyle.neutral.rawValue, forKey: "settings_responseStyle")
             }
             .preferredColorScheme(.dark)
+            .previewDisplayName("Ask a Le AI Mode Intro View Preview")
     }
 }
 
