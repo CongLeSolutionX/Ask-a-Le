@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9AE115C32DA12D910096F8FB /* Ask a Le.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ask a Le.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE115D32DA12D920096F8FB /* Ask a LeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ask a LeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AE115DD2DA12D920096F8FB /* Ask a LeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Ask a LeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE115C32DA12D910096F8FB /* Ask_a_Le.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ask_a_Le.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE115D32DA12D920096F8FB /* Ask_a_LeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ask_a_LeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE115DD2DA12D920096F8FB /* Ask_a_LeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Ask_a_LeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		9AE115C42DA12D910096F8FB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AE115C32DA12D910096F8FB /* Ask a Le.app */,
-				9AE115D32DA12D920096F8FB /* Ask a LeTests.xctest */,
-				9AE115DD2DA12D920096F8FB /* Ask a LeUITests.xctest */,
+				9AE115C32DA12D910096F8FB /* Ask_a_Le.app */,
+				9AE115D32DA12D920096F8FB /* Ask_a_LeTests.xctest */,
+				9AE115DD2DA12D920096F8FB /* Ask_a_LeUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9AE115C22DA12D910096F8FB /* Ask a Le */ = {
+		9AE115C22DA12D910096F8FB /* Ask_a_Le */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE115E72DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a Le" */;
+			buildConfigurationList = 9AE115E72DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_Le" */;
 			buildPhases = (
 				9AE115BF2DA12D910096F8FB /* Sources */,
 				9AE115C02DA12D910096F8FB /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				9AE115C52DA12D910096F8FB /* Ask a Le */,
 			);
-			name = "Ask a Le";
+			name = Ask_a_Le;
 			packageProductDependencies = (
 			);
 			productName = "Ask a Le";
-			productReference = 9AE115C32DA12D910096F8FB /* Ask a Le.app */;
+			productReference = 9AE115C32DA12D910096F8FB /* Ask_a_Le.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9AE115D22DA12D920096F8FB /* Ask a LeTests */ = {
+		9AE115D22DA12D920096F8FB /* Ask_a_LeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE115EA2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a LeTests" */;
+			buildConfigurationList = 9AE115EA2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_LeTests" */;
 			buildPhases = (
 				9AE115CF2DA12D920096F8FB /* Sources */,
 				9AE115D02DA12D920096F8FB /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				9AE115D62DA12D920096F8FB /* Ask a LeTests */,
 			);
-			name = "Ask a LeTests";
+			name = Ask_a_LeTests;
 			packageProductDependencies = (
 			);
 			productName = "Ask a LeTests";
-			productReference = 9AE115D32DA12D920096F8FB /* Ask a LeTests.xctest */;
+			productReference = 9AE115D32DA12D920096F8FB /* Ask_a_LeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9AE115DC2DA12D920096F8FB /* Ask a LeUITests */ = {
+		9AE115DC2DA12D920096F8FB /* Ask_a_LeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9AE115ED2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a LeUITests" */;
+			buildConfigurationList = 9AE115ED2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_LeUITests" */;
 			buildPhases = (
 				9AE115D92DA12D920096F8FB /* Sources */,
 				9AE115DA2DA12D920096F8FB /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				9AE115E02DA12D920096F8FB /* Ask a LeUITests */,
 			);
-			name = "Ask a LeUITests";
+			name = Ask_a_LeUITests;
 			packageProductDependencies = (
 			);
 			productName = "Ask a LeUITests";
-			productReference = 9AE115DD2DA12D920096F8FB /* Ask a LeUITests.xctest */;
+			productReference = 9AE115DD2DA12D920096F8FB /* Ask_a_LeUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9AE115BE2DA12D910096F8FB /* Build configuration list for PBXProject "Ask a Le" */;
+			buildConfigurationList = 9AE115BE2DA12D910096F8FB /* Build configuration list for PBXProject "Ask_a_Le" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9AE115C22DA12D910096F8FB /* Ask a Le */,
-				9AE115D22DA12D920096F8FB /* Ask a LeTests */,
-				9AE115DC2DA12D920096F8FB /* Ask a LeUITests */,
+				9AE115C22DA12D910096F8FB /* Ask_a_Le */,
+				9AE115D22DA12D920096F8FB /* Ask_a_LeTests */,
+				9AE115DC2DA12D920096F8FB /* Ask_a_LeUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		9AE115D52DA12D920096F8FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE115C22DA12D910096F8FB /* Ask a Le */;
+			target = 9AE115C22DA12D910096F8FB /* Ask_a_Le */;
 			targetProxy = 9AE115D42DA12D920096F8FB /* PBXContainerItemProxy */;
 		};
 		9AE115DF2DA12D920096F8FB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9AE115C22DA12D910096F8FB /* Ask a Le */;
+			target = 9AE115C22DA12D910096F8FB /* Ask_a_Le */;
 			targetProxy = 9AE115DE2DA12D920096F8FB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -461,7 +461,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ask a Le.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ask a Le";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ask_a_Le.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ask_a_Le";
 			};
 			name = Debug;
 		};
@@ -480,7 +480,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ask a Le.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ask a Le";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ask_a_Le.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Ask_a_Le";
 			};
 			name = Release;
 		};
@@ -521,7 +521,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9AE115BE2DA12D910096F8FB /* Build configuration list for PBXProject "Ask a Le" */ = {
+		9AE115BE2DA12D910096F8FB /* Build configuration list for PBXProject "Ask_a_Le" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE115E52DA12D920096F8FB /* Debug */,
@@ -530,7 +530,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE115E72DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a Le" */ = {
+		9AE115E72DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_Le" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE115E82DA12D920096F8FB /* Debug */,
@@ -539,7 +539,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE115EA2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a LeTests" */ = {
+		9AE115EA2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_LeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE115EB2DA12D920096F8FB /* Debug */,
@@ -548,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9AE115ED2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask a LeUITests" */ = {
+		9AE115ED2DA12D920096F8FB /* Build configuration list for PBXNativeTarget "Ask_a_LeUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9AE115EE2DA12D920096F8FB /* Debug */,
