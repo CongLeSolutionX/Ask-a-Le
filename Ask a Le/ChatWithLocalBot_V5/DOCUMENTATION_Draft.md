@@ -79,7 +79,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -88,7 +88,7 @@ config:
       'secondaryColor': '#EEF2',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
