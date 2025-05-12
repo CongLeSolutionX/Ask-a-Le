@@ -79,7 +79,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Fantasy',
+    'fontFamily': 'Fantasy,Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -139,7 +139,7 @@ config:
 %%{
   init: {
     'stateDiagram-v2': { 'htmlLabels': false},
-    'fontFamily': 'verdana',
+    'fontFamily': 'Fantasy,Monaco',
     'themeVariables': {
       'primaryColor': '#B528',
       'primaryTextColor': '#F8B229',
@@ -188,7 +188,7 @@ config:
 %%{
   init: {
     'sequence': { 'mirrorActors': true, 'showSequenceNumbers': true, 'actorMargin': 50 },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy,Monaco',
     'themeVariables': {
       'primaryColor': '#2BB8',
       'primaryBorderColor': '#7C0000',
@@ -250,7 +250,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy,Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -309,7 +309,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy,Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -359,7 +359,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -410,13 +410,13 @@ config:
 %%{
   init: {
     'classDiagram': { 'htmlLabels': false},
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
-      'primaryColor': '#BB28',
-      'primaryTextColor': '#FFF',
+      'primaryColor': '#B259',
+      'primaryTextColor': '#F8B229',
       'lineColor': '#F8B229',
-      'primaryBorderColor': '#7C3',
-      'secondaryColor': '#DD15',
+      'primaryBorderColor': '#7C2',
+      'secondaryColor': '#22F',
       'fontSize': '20px'
     }
   }
@@ -481,7 +481,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -527,7 +527,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -575,7 +575,7 @@ config:
 %%{
   init: {
     'flowchart': { 'htmlLabels': false, 'curve': 'linear' },
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
       'primaryColor': '#2FB1',
       'primaryTextColor': '#F8B229',
@@ -623,7 +623,7 @@ config:
 %%{
   init: {
     'journey': { 'htmlLabels': false},
-    'fontFamily': 'Monaco',
+    'fontFamily': 'Fantasy, Monaco',
     'themeVariables': {
       'primaryColor': '#BB28',
       'primaryTextColor': '#F8B229',
