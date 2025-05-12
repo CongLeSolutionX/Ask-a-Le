@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9A4E429F2DD2037B00022A5F /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = 9A4E429E2DD2037B00022A5F /* LLM */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9AE115D42DA12D920096F8FB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4E429F2DD2037B00022A5F /* LLM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = Ask_a_Le;
 			packageProductDependencies = (
+				9A4E429E2DD2037B00022A5F /* LLM */,
 			);
 			productName = "Ask a Le";
 			productReference = 9AE115C32DA12D910096F8FB /* Ask_a_Le.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 9AE115BA2DA12D910096F8FB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9A4E429D2DD2037B00022A5F /* XCLocalSwiftPackageReference "../../APPLE/SAMPLE_CODE/AI/eastriverlee_LLM.swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9AE115C42DA12D910096F8FB /* Products */;
 			projectDirPath = "";
@@ -562,6 +571,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		9A4E429D2DD2037B00022A5F /* XCLocalSwiftPackageReference "../../APPLE/SAMPLE_CODE/AI/eastriverlee_LLM.swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../APPLE/SAMPLE_CODE/AI/eastriverlee_LLM.swift;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9A4E429E2DD2037B00022A5F /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LLM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9AE115BB2DA12D910096F8FB /* Project object */;
 }
