@@ -146,7 +146,8 @@ config:
       'primaryBorderColor': '#7C33',
       'lineColor': '#F8B229',
       'secondaryColor': '#3312',
-      'tertiaryColor': '#fff'
+      'tertiaryColor': '#fff',
+      'fontSize': '20px'
     }
   }
 }%%
@@ -197,6 +198,7 @@ config:
       'fontSize': '15px',
       'textColor': '#F8B229',
       'actorTextColor': '#E2E',
+      'fontSize': '20px',
       'stroke':'#033',
       'stroke-width': '0.2px'
     }
@@ -257,7 +259,7 @@ config:
       'secondaryColor': '#EE22',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -316,7 +318,7 @@ config:
       'secondaryColor': '#EDE2',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -366,7 +368,7 @@ config:
       'secondaryColor': '#EBDEF0',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -415,7 +417,7 @@ config:
       'lineColor': '#F8B229',
       'primaryBorderColor': '#7C3',
       'secondaryColor': '#DD15',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -488,7 +490,7 @@ config:
       'secondaryColor': '#EBF2',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -534,7 +536,7 @@ config:
       'secondaryColor': '#DEF2',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -582,7 +584,7 @@ config:
       'secondaryColor': '#EEF2',
       'secondaryTextColor': '#6C3483',
       'secondaryBorderColor': '#A569BD',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -628,7 +630,7 @@ config:
       'lineColor': '#F8B229',
       'primaryBorderColor': '#7C3',
       'secondaryColor': '#DD15',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
@@ -726,7 +728,7 @@ config:
       'secondaryColor': '#81c784',
       'secondaryTextColor': '#6C3483',
       'lineColor': '#F8B229',
-      'fontSize': '20px'
+      'fontSize': '15px'
     }
   }
 }%%
