@@ -214,10 +214,10 @@ sequenceDiagram
 
     User->>UI: Tap mic
     UI->>Perm: Check/request permissions
-    Perm-->>UI: Result (authorized/denied)
+    Perm-->>UI: Result<br/>(authorized/denied)
     alt Permission granted
         UI->>Rec: Start recording
-        Rec-->>UI: Live transcription (updates UI)
+        Rec-->>UI: Live transcription<br/>(updates UI)
         User->>UI: Tap stop OR auto-stop
         Rec-->>UI: Final transcription
         UI->>LLM: Query AI with question
