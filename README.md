@@ -1,12 +1,24 @@
 # Ask-a-Le
 
+---
+
+This project is under-contruction.
+
+---
+
+
+The source code for `ChatWithLocalBot_V5` is inside the path below: 
+
+![Location_source_code](./assets/Location_source_code.png)
 
 ---
 
 
 ## Demo video for ChatWithLocalBot - V5
 
-<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/VX7yEoXAFf8as" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/today-loading-icon-VX7yEoXAFf8as">via GIPHY</a></p>
 
 ---
+[![Video preview image](./assets/Preview_image.png)](https://drive.google.com/file/d/1QNAN-sRxxt_RjPeua9u3azfgs3Otzb9D/view?usp=sharing)
 
+
+----
