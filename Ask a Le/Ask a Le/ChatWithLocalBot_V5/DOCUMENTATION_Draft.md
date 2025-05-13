@@ -1,7 +1,7 @@
 ---
 created: 2025-05-12 05:31:26
 author: Cong Le
-version: "1.0"
+version: "TBD"
 license(s): MIT, CC BY 4.0
 copyright: Copyright (c) 2025 Cong Le. All Rights Reserved.
 ---
