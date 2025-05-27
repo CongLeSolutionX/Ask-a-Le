@@ -698,12 +698,12 @@ This implementation is a rich, modern example of bridging **speech, AI, stateful
 
 ---
 
-
 <!-- 
 ```mermaid
 %% Current Mermaid version
 info
 ```  -->
+
 
 
 ```mermaid
@@ -728,18 +728,24 @@ config:
       'secondaryColor': '#81c784',
       'secondaryTextColor': '#6C3483',
       'lineColor': '#F8B229',
-      'fontSize': '15px'
+      'fontSize': '20px'
     }
   }
 }%%
 flowchart LR
-    My_Meme@{ img: "https://raw.githubusercontent.com/CongLeSolutionX/MY_GRAPHIC_ASSETS/refs/heads/Designing_graphic_syntax/MY_MEME/My-meme-icon-design.png", label: "Ăn uống gì chưa ngừi đẹp?", pos: "b", w: 200, h: 150, constraint: "on" }
+    My_Meme@{ img: "https://raw.githubusercontent.com/CongLeSolutionX/MY_GRAPHIC_ASSETS/refs/heads/main/MY_MEME/My-meme-ideas.png", label: "YOLO", pos: "b", w: 200, h: 150, constraint: "off" }
 
-    Closing_quote@{ shape: braces, label: "I'll leave this Earth empty-handed anyway!<br/>YOLO" }
+    Closing_quote@{ shape: braces, label: "With the right context,<br/>theory become reality" }
 
-My_Meme ~~~ Closing_quote
+    Link_to_my_profile{{"<a href='https://github.com/CongLeSolutionX/CongLeSolutionX' target='_blank'>Click here if you care about my profile</a>"}}
+
+Closing_quote ~~~ My_Meme
+My_Meme animatingEdge@--> Link_to_my_profile
+animatingEdge@{ animate: true }
+
 
 ```
+
 
 
 ---
